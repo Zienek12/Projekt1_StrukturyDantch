@@ -96,4 +96,12 @@ public:
 		}
 		std::cout << std::endl;
 	}
+
+	void arrayIntit(int givenSize)
+	{
+		for (int i = 0; i < givenSize; i++)
+		{
+			addBack(i);
+		}
+	}
 };
