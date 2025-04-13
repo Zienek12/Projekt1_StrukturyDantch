@@ -7,14 +7,19 @@ private:
 	int size;
 	int capacity;
 	void resize() {
-		capacity *= 2;
-		int* newArr = new int[capacity];
-		for (int i = 0; i < size; i++) {
+		int newCapacity = (capacity == 0) ? 1 : capacity * 2;
+		int* newArr = new int[newCapacity];
+
+		int elementsToCopy = (size > newCapacity) ? newCapacity : size;
+		for (int i = 0; i < elementsToCopy; i++) {
 			newArr[i] = arr[i];
 		}
+
 		delete[] arr;
 		arr = newArr;
+		capacity = newCapacity;
 	}
+
 public:
 
 	DynamicArray(int initialCapacity = 2) : capacity(initialCapacity), size(0) {
@@ -89,11 +94,15 @@ public:
 		}
 		return -1;
 	}
-	void print()
-	{
+	void print(){
 		for (int i = 0; i < size; i++) {
 			std::cout << arr[i] << " ";
 		}
 		std::cout << std::endl;
 	}
+
+	int getSize() const {
+		return size;
+	}
+
 };

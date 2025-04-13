@@ -1,33 +1,214 @@
-﻿// Projekt.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
+﻿#include "libraries.h" 
 
-#include <iostream>
-#include "dynamicArray.h"
-int main()
-{
+int main() {
+    DynamicArray arr;
+    LinkedList list;
+    short int choice;
 
-	DynamicArray arr;
-	arr.addBack(1);
-	arr.addBack(2);
-	arr.addBack(3);
-	arr.print();
-	arr.addFront(0);
-	arr.addIndex(3, 20);
-	arr.print();
-	arr.removeIndex(3);
-	arr.print();
-	arr.removeFront();
-	arr.addFront(200);
-	arr.print();
-}
+    while (true) {
+        std::cout << "Choose data structure:\n1. Dynamic Array\n2. Linked List\n3. Perform benchmark for dynamic array\n4. Perform benchmark for linked list\n5. Exit\n";
+        std::cin >> choice;
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
+        switch (choice) {
+        case 1: {
+            short int operation = 0;
+            while (operation != 8) {
+                std::cout << "Choose operation:\n"
+                    "1. Add Front\n"
+                    "2. Add Back\n"
+                    "3. Add on Index\n"
+                    "4. Remove Front\n"
+                    "5. Remove Back\n"
+                    "6. Remove Index\n"
+                    "7. Print\n"
+                    "8. Exit\n";
+                std::cin >> operation;
 
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln
+                switch (operation) {
+                case 1: {
+                    int value;
+                    std::cout << "Enter value to add at front: ";
+                    std::cin >> value;
+                    arr.addFront(value);
+                    break;
+                }
+                case 2: {
+                    int value;
+                    std::cout << "Enter value to add at back: ";
+                    std::cin >> value;
+                    arr.addBack(value);
+                    break;
+                }
+                case 3: {
+                    int index, value;
+                    std::cout << "Enter index and value to add: ";
+                    std::cin >> index >> value;
+                    try {
+                        arr.addIndex(index, value);
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 4: {
+                    try {
+                        arr.removeFront();
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 5: {
+                    try {
+                        arr.removeBack();
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 6: {
+                    int index;
+                    std::cout << "Enter index to remove: ";
+                    std::cin >> index;
+                    try {
+                        arr.removeIndex(index);
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 7: {
+                    arr.print();
+                    break;
+                }
+                case 8: {
+                    std::cout << "Returning to main menu...\n";
+                    break;
+                }
+                default: {
+                    std::cout << "Invalid operation. Please try again.\n";
+                    break;
+                }
+                }
+                system("pause");
+                system("cls");
+            }
+            break;
+        }
+        case 2: {
+            short int operation = 0;
+            while (operation != 8) {
+                std::cout << "Choose operation:\n"
+                    "1. Add Front\n"
+                    "2. Add Back\n"
+                    "3. Add on Index\n"
+                    "4. Remove Front\n"
+                    "5. Remove Back\n"
+                    "6. Remove Index\n"
+                    "7. Print\n"
+                    "8. Exit\n";
+                std::cin >> operation;
+
+                switch (operation) {
+                case 1: {
+                    int value;
+                    std::cout << "Enter value to add at front: ";
+                    std::cin >> value;
+                    list.addFront(value);
+                    break;
+                }
+                case 2: {
+                    int value;
+                    std::cout << "Enter value to add at back: ";
+                    std::cin >> value;
+                    list.addBack(value);
+                    break;
+                }
+                case 3: {
+                    int index, value;
+                    std::cout << "Enter index and value to add: ";
+                    std::cin >> index >> value;
+                    try {
+                        list.addIndex(index, value);
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 4: {
+                    try {
+                        list.removeFront();
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 5: {
+                    try {
+                        list.removeBack();
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 6: {
+                    int index;
+                    std::cout << "Enter index to remove: ";
+                    std::cin >> index;
+                    try {
+                        list.removeIndex(index);
+                    }
+                    catch (const std::out_of_range& e) {
+                        std::cerr << e.what() << '\n';
+                    }
+                    break;
+                }
+                case 7: {
+                    list.print();
+                    break;
+                }
+                case 8: {
+                    std::cout << "Returning to main menu...\n";
+                    break;
+                }
+                default: {
+                    std::cout << "Invalid operation. Please try again.\n";
+                    break;
+                }
+                }
+                system("pause");
+                system("cls");
+            }
+            break;
+
+            }
+        case 3: {
+            benchmarkDynamicArray();
+            break;
+        }
+		case 4: {
+			benchmarkLinkedList();
+			break;
+		}
+        case 5: {
+            std::cout << "Exiting...\n";
+            return 0;
+        }
+        default: {
+            std::cout << "Invalid choice. Please try again.\n";
+            break;
+        }
+        }
+              system("pause");
+              system("cls");
+        }
+
+        return 0;
+    }
