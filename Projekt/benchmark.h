@@ -29,7 +29,7 @@ void benchmarkDynamicArray() {
         "RemoveIndex.txt",
         "Search.txt",
     };
-    std::vector<int> iterations = { 1000,2000, 5000, 10000, 20000, 50000, 100000, 200000, 500000, 1000000 };
+    std::vector<int> iterations = { 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000 };
 
     for (size_t i = 0; i < names.size(); i++) {
         std::ofstream file(fileName + names[i]);
@@ -160,9 +160,9 @@ void benchmarkLinkedList() {
         "RemoveIndex.txt",
         "Search.txt",
     };
-    std::vector<int> iterations = { 1000, 5000, 10000, 50000, 100000 };
+    std::vector<int> iterations = { 1000, 2000, 5000, 10000, 20000, 50000, 100000, 200000 };
 
-    for (size_t i = 0; i < names.size(); i++) {
+    for (size_t i = 0; i < 3; i++) {
         std::ofstream file(fileName + names[i]);
         if (!file.is_open()) {
             std::cerr << "Failed to open file: " << fileName + names[i] << std::endl;

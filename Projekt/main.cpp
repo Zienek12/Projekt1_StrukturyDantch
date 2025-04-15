@@ -26,6 +26,9 @@ int main() {
 
                 switch (operation) {
                 case 1: {
+#ifdef _MSC_VER  
+                    std::cout << "Kompilator MSVC, wersja: " << _MSC_VER << std::endl;
+#endif 
                     int value;
                     std::cout << "Enter value to add at front: ";
                     std::cin >> value;
